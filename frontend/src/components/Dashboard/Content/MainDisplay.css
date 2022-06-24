@@ -1,0 +1,13 @@
+.displayImage {
+    min-width: 50%;
+    max-width: 90%;
+    max-height: 80%;
+    min-width: 250px;
+}
+.imageDescription{
+    font-size: 2rem;
+    font-weight: bold;
+}
+.display::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}

@@ -1,0 +1,37 @@
+.dropbtn {
+    background-color: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    font-weight: bolder;
+  }
+  
+  .dropbtn:hover {
+    background-color: #848c91;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    position: absolute;
+    background-color: #f1f1f1;
+    width: auto;
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 2px 2px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content button:hover {background-color: #ddd}
+  
+  .opt {
+    background: transparent;
+    border: none;
+  }

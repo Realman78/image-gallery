@@ -1,0 +1,33 @@
+.searchWrapper input[type=text] {
+    padding: 6px;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-right: none;
+    float: left;
+    width: 100%;
+    background: #f8f8f8;
+  }
+  
+  /* Style the submit button */
+  .searchWrapper button {
+    float: left;
+    width: 10%;
+    padding: 6px;
+    background: #f8f8f8;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+  }
+  
+  .searchWrapper button:hover {
+    background: #0b7dda;
+  }
+  
+  /* Clear floats */
+  .searchWrapper::after {
+    content: "";
+    clear: both;
+    display: table;
+  }

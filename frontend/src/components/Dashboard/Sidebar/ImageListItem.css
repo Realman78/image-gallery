@@ -1,0 +1,33 @@
+.listItemWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 95%;
+    border: 1px solid gray;
+    border-radius: 6px;
+    box-shadow: 2px 2px 2px #c4b5b5;
+    padding: 15px 5px;
+}
+.listItemWrapper img {
+    width: 30%;
+}
+.titleWrapper {
+    width: max-content;
+    margin: auto;
+}
+.titleWrapper p {
+    font-size: 1rem;
+    font-weight: bolder;
+}
+.reviewButton {
+    margin-top: 5px;
+    background-color: #277a7f;
+    text-transform: uppercase;
+    border: none;
+    color: white;
+    padding: 8px;
+    cursor: pointer;
+}
+.imageList::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
