@@ -3,10 +3,11 @@ import { styled } from '@mui/material'
 import { validateRegisterForm } from '../../features/utils/validators'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import {connect} from 'react-redux'
-import {getActions} from '../../store/actions/authActions'
+import { connect } from 'react-redux'
+import { getActions } from '../../store/actions/authActions'
 import RegisterForm from './RegisterForm'
 import RegisterFooter from './RegisterFooter'
+import { useMediaQuery } from 'react-responsive'
 
 const MainContainer = styled('div')({
   width: '65%',
@@ -20,7 +21,9 @@ const MainContainer = styled('div')({
   marginBottom: 0
 })
 
-function RegisterWrapper({register}) {
+function RegisterWrapper({ register }) {
+  const isMobile = useMediaQuery({ query: '(max-width: 1000px)' });
+
   const navigate = useNavigate()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -30,7 +33,7 @@ function RegisterWrapper({register}) {
 
   useEffect(() => {
     setIsFormValid(validateRegisterForm(username, password, repeatedPassword))
-  }, [username, password, repeatedPassword,setIsFormValid])
+  }, [username, password, repeatedPassword, setIsFormValid])
 
   const handleRegister = async () => {
     const userDetails = {
@@ -38,23 +41,27 @@ function RegisterWrapper({register}) {
       password,
     }
     const answer = await register(userDetails, navigate)
-    console.log(answer)
-    if (answer.error){
+    if (answer.error) {
       console.log(answer.error)
       toast.error(answer.error.response?.data?.error)
       if (!answer.error.response?.data?.error) toast.error('Something went wrong. Try again later.')
     }
   }
+  const handleEnter = (e) => {
+    if (e.keyCode === 13 && isFormValid) {
+      handleRegister()
+    }
+  }
   return (
-    <MainContainer>
-      <h1 style={{marginBottom: 0}}>Register</h1>
-      <RegisterForm  username={username} setUsername={setUsername} password={password} setPassword={setPassword} repeatedPassword={repeatedPassword} setRepeatedPassword={setRepeatedPassword}/>
-      <RegisterFooter isFormValid={isFormValid} handleRegister={handleRegister}/>
+    <MainContainer style={{ width: isMobile ? '90%' : '65%', marginLeft: isMobile ? '10%' : '35%' }}>
+      <h1 style={{ marginBottom: 0 }}>Register</h1>
+      <RegisterForm handleEnter={handleEnter} username={username} setUsername={setUsername} password={password} setPassword={setPassword} repeatedPassword={repeatedPassword} setRepeatedPassword={setRepeatedPassword} />
+      <RegisterFooter isFormValid={isFormValid} handleRegister={handleRegister} />
     </MainContainer>
   )
 }
 
-const mapActionsToProps = dispatch=>{
+const mapActionsToProps = dispatch => {
   return {
     ...getActions(dispatch)
   }

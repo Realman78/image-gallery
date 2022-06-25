@@ -2,6 +2,7 @@ import React from 'react'
 import { styled } from '@mui/material'
 import LoginWrapper from './LoginWrapper'
 import RegisterWrapper from './RegisterWrapper'
+import { useMediaQuery } from 'react-responsive'
 
 const MainContainer = styled('div')({
     width: '45%',
@@ -23,8 +24,9 @@ const Banner = styled('div')({
 
 
 function ContentContainer() {
+    const isMobile = useMediaQuery({ query: '(max-width: 1000px)' });
     return (
-        <MainContainer>
+        <MainContainer style={{width: isMobile ? '90%' : '45%'}}>
             <Banner>
                 <img src='./agilno-logo.png' width="200px" />
             </Banner>

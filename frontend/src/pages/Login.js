@@ -1,7 +1,7 @@
 import React from 'react'
 import { styled } from '@mui/material'
 import ContentContainer from '../components/Auth/ContentContainer'
-
+import { useMediaQuery } from 'react-responsive'
 const MainContainer = styled('div')({
   width: '100%',
   height: '100%',
@@ -22,10 +22,11 @@ const BackgroundImageContainer = styled('div')({
 })
 
 function Login() {
+  const isMobile = useMediaQuery({ query: '(max-width: 1000px)' });
   return (
     <MainContainer>
       <ContentContainer />
-      <BackgroundImageContainer />
+      {!isMobile && <BackgroundImageContainer />}
     </MainContainer >
   )
 }
