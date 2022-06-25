@@ -88,3 +88,23 @@ export const addPostComment = async (data)=>{
         }
     }
 }
+export const editPostComment = async (data)=>{
+    try {
+        return await apiClient.patch('/api/comments/update/'+data.id, data)
+    } catch (exception) {
+        return {
+            error: true,
+            exception
+        }
+    }
+}
+export const deleteComment = async (data)=>{
+    try {
+        return await apiClient.post('/api/comments/delete/'+data.id, data)
+    } catch (exception) {
+        return {
+            error: true,
+            exception
+        }
+    }
+}

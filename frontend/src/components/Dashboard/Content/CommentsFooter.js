@@ -11,7 +11,8 @@ const MainContainer = styled('div')({
   height: '10%',
   display: 'flex',
   justifyContent: 'flex-start',
-  borderTop: '1px solid gray'
+  borderTop: '1px solid gray',
+  paddingLeft: '2px'
 })
 function CommentsFooter({addPostComment, userDetails, chosenPost}) {
   const isMobile = useMediaQuery({ query: '(max-width: 1000px)' });

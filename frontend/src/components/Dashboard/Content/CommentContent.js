@@ -1,17 +1,58 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { styled } from '@mui/material'
 import './Comments.css'
-
+import CommentActions from './CommentActions'
+import Modal from '../../UI/Modal'
+import { connect } from 'react-redux'
+import { getPostActions } from '../../../store/actions/postActions'
 const MainContainer = styled('div')({
   padding: '5px',
   maxWidth: '80%',
   borderRadius: '4px',
-  wordBreak:'break-all',
+  wordBreak: 'break-all',
+  display: 'flex',
+  flexDirection: 'column'
 })
-function CommentContent({content, isMine}) {
+function CommentContent({ content, isMine, id, userDetails, editPostComment }) {
+  const [showEditComment, setShowEditComment] = useState(false)
+  const [newValue, setNewValue] = useState('')
+  const toggleEditShowing = () => {
+    setShowEditComment(!showEditComment)
+  }
+  const inputHandler = (e) => {
+    setNewValue(e.target.value)
+  }
+  const handleSave = async (e) => {
+    if (newValue.length < 1) return
+    const answer = await editPostComment({
+      user_id: userDetails.id,
+      content: newValue,
+      id
+    })
+    if (!answer.error) {
+      toggleEditShowing()
+    }
+  }
   return (
-    <MainContainer className={isMine ? 'mine' : 'others'}>{content}</MainContainer>
+    <MainContainer className={isMine ? 'mine' : 'others'}>
+      <Modal handleClose={toggleEditShowing} show={showEditComment}>
+        <textarea onChange={inputHandler} style={{ width: '90%', height: '100px' }} placeholder='New comment content...'></textarea>
+        <button onClick={handleSave}>Save</button>
+      </Modal>
+      {isMine && <CommentActions commentContent={newValue} toggleEditShowing={toggleEditShowing} id={id} />}
+      {content}
+    </MainContainer>
   )
 }
 
-export default CommentContent
+const mapActionsToProps = dispatch => {
+  return {
+    ...getPostActions(dispatch)
+  }
+}
+const mapStoreStateToProps = ({ auth }) => {
+  return {
+    ...auth,
+  }
+}
+export default connect(mapStoreStateToProps, mapActionsToProps)(CommentContent)

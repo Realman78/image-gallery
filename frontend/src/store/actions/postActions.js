@@ -12,6 +12,8 @@ export const getPostActions = dispatch => {
         getPost: (id) => dispatch(getPost(id)),
         addPost: (body) => dispatch(addPost(body)),
         addPostComment: (body) => dispatch(addPostComment(body)),
+        editPostComment: (body) => dispatch(editPostComment(body)),
+        deleteComment: (body) => dispatch(deleteComment(body)),
     }
 }
 
@@ -80,6 +82,27 @@ const addPost = body => {
 const addPostComment = (body) =>{
     return async dispatch => {
         const response = await api.addPostComment(body)
+        console.log(response)
+        if (response.error) {
+            return {error:response}
+        } else {
+            return {}
+        }
+    }
+}
+const editPostComment = (body) =>{
+    return async dispatch => {
+        const response = await api.editPostComment(body)
+        if (response.error) {
+            return {error:response}
+        } else {
+            return {}
+        }
+    }
+}
+const deleteComment = (body) =>{
+    return async dispatch => {
+        const response = await api.deleteComment(body)
         console.log(response)
         if (response.error) {
             return {error:response}

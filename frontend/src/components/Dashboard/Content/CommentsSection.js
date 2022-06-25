@@ -30,7 +30,7 @@ function CommentsSection({comments, userDetails, chosenPost}) {
     <MainContainer ref={mainContainer} className={'commentsList'} onScroll={scrollHandler}>
       <img ref={imageRef} src={chosenPost.image} className={'firstPic'} style={{width: 330 - distanceFromTop}}/>
       {comments.map(comment =>{
-      return <Comment key={comment.id} isMine={comment.user_id == userDetails.id} content={comment.content}/>
+      return <Comment key={comment.id} id={comment.id} isMine={comment.user_id == userDetails.id} content={comment.content}/>
       })}
     </MainContainer>
   )
