@@ -14,9 +14,10 @@ const MainContainer = styled('div')({
     alignItems: 'flex-start',
     marginBottom:'30px'
 })
-function ImageListItem({id, title, description, image, getPost}) {
+function ImageListItem({id, title, description, image, getPost, handleCloseMenu}) {
     const reviewButtonHandler = ()=>{
         getPost(id)
+        handleCloseMenu()
     }
     return (
         <MainContainer>

@@ -3,6 +3,7 @@ import { styled } from '@mui/system'
 import ImageListItem from './ImageListItem'
 import './ImageListItem.css'
 import {connect} from 'react-redux'
+import { useMediaQuery } from 'react-responsive'
 
 const MainContainer = styled('div')({
   width: '90%',
@@ -14,10 +15,11 @@ const MainContainer = styled('div')({
   overflowY: 'scroll',
 })
 
-function ImageList({posts}) {
+function ImageList({posts, handleCloseMenu}) {
+  const isMobile = useMediaQuery({ query: '(max-width: 1000px)' });
   return (
-    <MainContainer className='imageList'>
-      {posts.map(post=><ImageListItem key={post.id} id={post.id} image={post.image} title={post.title} description={post.description}/>)}
+    <MainContainer style={{height: isMobile ? '80vh' : '100%'}} className='imageList'>
+      {posts.sort((a, b) => (a.id - b.id) ? -1 : 1).map(post=><ImageListItem handleCloseMenu={handleCloseMenu} key={post.id} id={post.id} image={post.image} title={post.title} description={post.description}/>)}
       
     </MainContainer>
   )

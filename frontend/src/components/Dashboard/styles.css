@@ -31,3 +31,10 @@
     cursor: pointer;
     box-shadow: 2px 2px 3px rgb(156, 156, 156);
 }
+.hamButton{
+    width: 75px;
+    height: 75px;
+    font-size: 3rem;
+    border-radius: 50%;
+    border: 2px solid black;
+}

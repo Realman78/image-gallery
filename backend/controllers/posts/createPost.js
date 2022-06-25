@@ -2,7 +2,7 @@ const db = require('../../models/models')
 const Post = db.posts
 const User = db.users
 const {uploadImage} = require('../../utils/cloudinary-helper')
-
+const {getSocketServerInstance} = require('../../socketStore')
 
 const createPost = async (req, res) => {
     try {
@@ -17,6 +17,7 @@ const createPost = async (req, res) => {
         const user = await User.findOne({where: {id: body.user_id}})
         if (!user) return res.status(400).send('Non-existent user')
         const post = await Post.create(body)
+        getSocketServerInstance().emit('new-post')
         return res.status(201).send(post)
     } catch (e) {
         console.log(e.message)

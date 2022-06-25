@@ -35,7 +35,7 @@ function Input(props) {
     }
     return <Wrapper>
         <Label>{label}</Label>
-        <InputStyled value={value} onChange={handleValueChange} type={type} placeholder={placeholder} />
+        <InputStyled onKeyDown={props.handleEnter} value={value} onChange={handleValueChange} type={type} placeholder={placeholder} />
     </Wrapper>
 }
 

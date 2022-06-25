@@ -41,10 +41,15 @@ function LoginWrapper({login}) {
       toast.error(answer.error.exception?.code === "ECONNABORTED" ? "Something went wrong. Retry Connection" : "Credentials incorrect")
     }
   }
+  const handleEnter = (e)=>{
+    if (e.keyCode === 13 && isFormValid){
+      handleLogin()
+    }
+  }
   return (
     <MainContainer>
       <h1 style={{marginBottom: 0}}>Log In</h1>
-      <LoginForm  username={username} setUsername={setUsername} password={password} setPassword={setPassword}/>
+      <LoginForm handleEnter={handleEnter}  username={username} setUsername={setUsername} password={password} setPassword={setPassword}/>
       <LoginFooter isFormValid={isFormValid} handleLogin={handleLogin}/>
     </MainContainer>
   )

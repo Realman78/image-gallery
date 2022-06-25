@@ -31,3 +31,6 @@
 .imageList::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
 }
+.imageList {
+    -webkit-overflow-scrolling: touch; /* Lets it scroll lazy */
+  }

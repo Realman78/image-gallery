@@ -1,0 +1,21 @@
+.menu {
+    position:fixed;
+    left: 0;
+    top: 0;
+    width: 80%;
+    height: 100%;
+    background-color: white;
+    z-index: 1000;
+}
+.menu::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+.closeButton{
+    width: 20%;
+    border: none;
+    background-color: transparent;
+    padding: 15px 5px;
+    border-radius: 6px;
+    float: right;
+    font-size: 32px;
+}

@@ -6,7 +6,7 @@ function LoginForm(props) {
   return (
     <>
         <Input value={props.username} setValue={props.setUsername} label="Username" type="text" placeholder="Type your username"/>
-        <Input value={props.password} setValue={props.setPassword} label="Password" type="password" placeholder="Type your password"/>
+        <Input handleEnter={props.handleEnter} value={props.password} setValue={props.setPassword} label="Password" type="password" placeholder="Type your password"/>
     </>
   )
 }

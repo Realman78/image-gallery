@@ -1,3 +1,4 @@
+
 .searchWrapper input[type=text] {
     padding: 6px;
     font-size: 17px;
@@ -22,7 +23,7 @@
   }
   
   .searchWrapper button:hover {
-    background: #0b7dda;
+    background: #bbbbbb;
   }
   
   /* Clear floats */

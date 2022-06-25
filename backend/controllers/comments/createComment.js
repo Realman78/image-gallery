@@ -18,7 +18,7 @@ const createComment = async (req, res) => {
         const post = await Post.findOne({where: {id: body.post_id}})
         if (!post) return res.status(400).send('Non-existent post')
         const comment = await Comment.create(body)
-        io.emit('new-comment')
+        io.emit('new-comment', {postId: post.id})
         return res.status(201).send(comment)
     } catch (e) {
         console.log(e.message)

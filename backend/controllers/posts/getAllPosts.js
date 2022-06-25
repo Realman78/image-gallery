@@ -5,7 +5,9 @@ const Post = db.posts
 
 const getAllPosts = async (req, res) => {
     try {
-        const posts = await Post.findAll({})
+        const posts = await Post.findAll({},{order: [
+            ['id', 'ASC'],
+        ]})
         return res.status(200).send(posts)
     } catch (e) {
         console.log(e)

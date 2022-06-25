@@ -3,7 +3,7 @@ import { logout } from './features/utils/auth'
 
 const apiClient = axios.create({
     baseURL: 'http://localhost:5000',
-    timeout: 2500
+    timeout: 10000
 })
 
 // apiClient.interceptors.request.use(config => {
@@ -61,6 +61,26 @@ export const getSearchTermPosts = async (searchTerm)=>{
 export const getPost = async (id)=>{
     try {
         return await apiClient.get('/api/comments/get/'+id)
+    } catch (exception) {
+        return {
+            error: true,
+            exception
+        }
+    }
+}
+export const addPost = async (data)=>{
+    try {
+        return await apiClient.post('/api/posts/create', data)
+    } catch (exception) {
+        return {
+            error: true,
+            exception
+        }
+    }
+}
+export const addPostComment = async (data)=>{
+    try {
+        return await apiClient.post('/api/comments/create', data)
     } catch (exception) {
         return {
             error: true,

@@ -2,6 +2,9 @@ import React from 'react'
 import {styled} from '@mui/material'
 import './styles.css'
 import ToolbarOptions from './Toolbar/ToolbarOptions'
+import { useMediaQuery } from 'react-responsive'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGripLines } from '@fortawesome/free-solid-svg-icons'
 const MainContainer = styled('div')({
     width: '99%',
     height: '48px',
@@ -16,11 +19,19 @@ const MainContainer = styled('div')({
     padding: "0 15px"
 })
 
-function Toolbar() {
+function Toolbar({setShowMenu}) {
+  const isMobile = useMediaQuery({ query: '(max-width: 1000px)' });
+  const handleOpenMenu = ()=>{
+    setShowMenu(prevState=>{
+      return !prevState
+    })
+    
+  }
   return (
-    <MainContainer>
-        <img className='logo' src='./a-logo.jpg'/>
-        <ToolbarOptions />
+    <MainContainer style={{height: isMobile ? '10%' : '48px'}}>
+        {isMobile && <button onClick={handleOpenMenu} className='hamButton' style={{marginLeft: isMobile ? '15px' : 0}}><FontAwesomeIcon icon={faGripLines}/></button>}
+        <img style={{marginLeft: isMobile ? 0 : '15px'}} className='logo' src='./a-logo.jpg'/>
+        {!isMobile && <ToolbarOptions />}
     </MainContainer>
   )
 }

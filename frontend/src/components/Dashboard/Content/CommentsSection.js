@@ -22,7 +22,6 @@ function CommentsSection({comments, userDetails, chosenPost}) {
   const [distanceFromTop, setDistanceFromTop] = useState(0)
   const scrollHandler = ()=>{
     setDistanceFromTop(mainContainer.current.scrollTop)
-    console.log(distanceFromTop)
   }
   useEffect(()=>{
     mainContainer.current.scrollTop = mainContainer.current.scrollHeight;
