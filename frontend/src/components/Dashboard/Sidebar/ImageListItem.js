@@ -17,7 +17,7 @@ const MainContainer = styled('div')({
 function ImageListItem({id, title, description, image, getPost, handleCloseMenu}) {
     const reviewButtonHandler = ()=>{
         getPost(id)
-        handleCloseMenu()
+        if (handleCloseMenu)handleCloseMenu()
     }
     return (
         <MainContainer>

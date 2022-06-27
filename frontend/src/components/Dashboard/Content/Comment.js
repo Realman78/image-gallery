@@ -6,7 +6,7 @@ const MainContainer = styled('div')({
   width: '100%',
   display: 'flex',
   alignItems: 'center',
-  marginBottom: '15px',
+  marginBottom: '20px',
   paddingRight: '5px',
 })
 function Comment({ content, isMine, id }) {

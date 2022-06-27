@@ -11,10 +11,13 @@ const MainContainer = styled('div')({
   borderRadius: '4px',
   wordBreak: 'break-all',
   display: 'flex',
-  flexDirection: 'column'
+  flexDirection: 'column',
+  position: 'relative'
 })
 function CommentContent({ content, isMine, id, userDetails, editPostComment }) {
   const [showEditComment, setShowEditComment] = useState(false)
+  const [showCommentActions, setShowCommentActions] = useState(false)
+
   const [newValue, setNewValue] = useState('')
   const toggleEditShowing = () => {
     setShowEditComment(!showEditComment)
@@ -33,14 +36,20 @@ function CommentContent({ content, isMine, id, userDetails, editPostComment }) {
       toggleEditShowing()
     }
   }
+  const handleHover = () => {
+    setShowCommentActions(true)
+  }
+  const handleExit = () => {
+    setShowCommentActions(false)
+  }
   return (
-    <MainContainer className={isMine ? 'mine' : 'others'}>
+    <MainContainer className={isMine ? 'mine' : 'others'} onMouseEnter={handleHover} onMouseLeave={handleExit}>
       <Modal handleClose={toggleEditShowing} show={showEditComment}>
         <textarea onChange={inputHandler} style={{ width: '90%', height: '100px' }} placeholder='New comment content...'></textarea>
         <button onClick={handleSave}>Save</button>
       </Modal>
-      {isMine && <CommentActions commentContent={newValue} toggleEditShowing={toggleEditShowing} id={id} />}
-      {content}
+      <p className='message' style={{paddingBottom: showCommentActions && isMine ? '10px' : 0}}>{content}</p>
+      {isMine && <CommentActions show={showCommentActions} commentContent={newValue} toggleEditShowing={toggleEditShowing} id={id} />}
     </MainContainer>
   )
 }

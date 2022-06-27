@@ -7,30 +7,33 @@ import { connect } from 'react-redux'
 import { getPostActions } from '../../../store/actions/postActions'
 
 const MainContainer = styled('div')({
-    width: '90%',
-    display: 'flex',
-    justifyContent: 'flex-start'
+  width: '90%',
+  display: 'flex',
+  justifyContent: 'flex-end',
+  position: 'absolute',
+  bottom: '-20px',
+  right: '-5px'
 })
-function CommentActions({ toggleEditShowing, id, deleteComment, userDetails }) {
-    const editHandler = () => {
-        toggleEditShowing()
+function CommentActions({ show, toggleEditShowing, id, deleteComment, userDetails }) {
+  const editHandler = () => {
+    toggleEditShowing()
+  }
+  const deleteHandler = async () => {
+    const answer = await deleteComment({
+      user_id: userDetails.id,
+      id
+    })
+    if (!answer.error) {
+      alert('Deleted comment')
     }
-    const deleteHandler = async ()=>{
-        const answer = await deleteComment({
-            user_id: userDetails.id,
-            id
-          })
-          if (!answer.error) {
-            alert('Deleted comment')
-          }
-    }
+  }
 
-    return (
-        <MainContainer>
-            <button onClick={editHandler} className='actionButton btnCyanHover'><FontAwesomeIcon icon={faPen} /></button>
-            <button onClick={deleteHandler} className='actionButton btnRedHover'><FontAwesomeIcon icon={faTrash} /></button>
-        </MainContainer>
-    )
+  return (
+    <MainContainer style={{display: show ? 'flex' : 'none'}}>
+      <button onClick={editHandler} className='actionButton btnCyanHover'><FontAwesomeIcon icon={faPen} /></button>
+      <button onClick={deleteHandler} className='actionButton btnRedHover'><FontAwesomeIcon icon={faTrash} /></button>
+    </MainContainer>
+  )
 }
 
 const mapActionsToProps = dispatch => {

@@ -4,7 +4,7 @@ import {getAllPosts, getPost} from './store/actions/postActions'
 let socket = null
 
 export const connectSocket = () => {
-    socket = io('http://localhost:5000')
+    socket = io('ws://localhost:5000', {transports: ['websocket']})
 
     socket.on('connect', () => {
         console.log('Connected with socket server. ID: ' + socket.id)
