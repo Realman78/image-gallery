@@ -1,8 +1,7 @@
 module.exports = {
     HOST: 'localhost',
     USER: 'root',
-    PASSWORD: 'root',
-    DB: 'image_gallery',
+    DB: 'image_gallery_2',
     dialect: 'mysql',
 
     pool: {
