@@ -14,6 +14,7 @@ export const getPostActions = dispatch => {
         addPostComment: (body) => dispatch(addPostComment(body)),
         editPostComment: (body) => dispatch(editPostComment(body)),
         deleteComment: (body) => dispatch(deleteComment(body)),
+        likePost: (body) => dispatch(likePost(body)),
     }
 }
 
@@ -108,6 +109,16 @@ const deleteComment = (body) =>{
             return {error:response}
         } else {
             return {}
+        }
+    }
+}
+const likePost = (body) =>{
+    return async dispatch => {
+        const response = await api.likePost(body)
+        if (response.error) {
+            return {error:response}
+        } else {
+            return {response}
         }
     }
 }

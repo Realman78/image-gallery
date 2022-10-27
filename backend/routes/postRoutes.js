@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { createPost, getAllPosts, getUsersPosts, getPost, searchPosts } = require('../controllers/posts/posts')
+const { createPost, getAllPosts, getUsersPosts, getPost, searchPosts, likePost } = require('../controllers/posts/posts')
 const multer = require('multer')
 const requireLogin = require('../middleware/authMiddleware')
 const upload = multer({
@@ -17,6 +17,7 @@ router.get('/getall', getAllPosts)
 router.get('/getuserposts/:id', getUsersPosts)
 router.get('/getpost/:id', getPost)
 router.get('/search', searchPosts)
+router.patch("/like/:id", requireLogin, likePost)
 
 
 

@@ -8,9 +8,9 @@ function Dropdown() {
     }
 
     return (
-        <div class="dropdown">
-            <button onClick={handleToggleDropdown} class="dropbtn">v</button>
-            {showDropdown && <div id="myDropdown" class="dropdown-content">
+        <div className="dropdown">
+            <button onClick={handleToggleDropdown} className="dropbtn">v</button>
+            {showDropdown && <div id="myDropdown" className="dropdown-content">
                 <button className='opt' onClick={logout}>Logout</button>
             </div>}
         </div>

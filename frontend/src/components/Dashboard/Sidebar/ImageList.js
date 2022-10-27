@@ -19,7 +19,7 @@ function ImageList({posts, handleCloseMenu}) {
   const isMobile = useMediaQuery({ query: '(max-width: 1000px)' });
   return (
     <MainContainer style={{height: isMobile ? '80vh' : '100%'}} className='imageList'>
-      {posts.sort((a, b) => (a.id - b.id) ? -1 : 1).map(post=><ImageListItem handleCloseMenu={handleCloseMenu} key={post.id} id={post.id} image={post.image} title={post.title} description={post.description}/>)}
+      {posts.sort((a, b) => (a.id - b.id) ? -1 : 1).map(post=><ImageListItem handleCloseMenu={handleCloseMenu} likes={post.likes} key={post.id} id={post.id} image={post.image} title={post.title} description={post.description}/>)}
       
     </MainContainer>
   )

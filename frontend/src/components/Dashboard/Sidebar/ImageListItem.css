@@ -34,3 +34,14 @@
 .imageList {
     -webkit-overflow-scrolling: touch; /* Lets it scroll lazy */
   }
+
+  .likeButton {
+    border: none;
+    margin-left: 12px;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: large;
+  }
+  .likeButton:hover {
+    color: rgb(221, 69, 69) !important;
+  }

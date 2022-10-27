@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
         description: {
             type: DataTypes.TEXT,
         },
+        likes: {
+            type: DataTypes.JSON
+        }
     
     })
 

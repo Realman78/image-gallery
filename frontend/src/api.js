@@ -108,3 +108,13 @@ export const deleteComment = async (data)=>{
         }
     }
 }
+export const likePost = async (data)=>{
+    try {
+        return await apiClient.patch('/api/posts/like/'+data.id, data)
+    } catch (exception) {
+        return {
+            error: true,
+            exception
+        }
+    }
+}
